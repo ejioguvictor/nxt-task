@@ -1,10 +1,10 @@
 export const COLUMNS = [
-    {
-      Header: 'Id',
-      accessor: 'id',
-      disableFilters: true,
-      sticky: 'left'
-    },
+    // {
+    //   Header: 'Id',
+    //   accessor: 'id',
+    //   disableFilters: true,
+    //   sticky: 'left'
+    // },
     {
       Header: 'Name',
       accessor: 'name',
