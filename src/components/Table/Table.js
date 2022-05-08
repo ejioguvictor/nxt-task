@@ -3,6 +3,7 @@ import axios from 'axios'
 import MOCK_DATA from  "../../MOCK_DATA.json"
 import {useTable} from 'react-table'
 import { COLUMNS } from '../../columns'
+import "./table.css"
 
 import React from 'react'
 
@@ -51,15 +52,6 @@ export default function Table() {
             )
           })}
         </tbody>
-        <tfoot>
-          {footerGroups.map(footerGroup => (
-            <tr {...footerGroup.getFooterGroupProps()}>
-              {footerGroup.headers.map(column => (
-                <td {...column.getFooterProps()}>{column.render('Footer')}</td>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
       </table>
     </div>
   )

@@ -6,8 +6,8 @@ export const COLUMNS = [
       sticky: 'left'
     },
     {
-      Header: 'Planet',
-      accessor: 'planet',
+      Header: 'Name',
+      accessor: 'name',
       sticky: 'left'
     },
     {
