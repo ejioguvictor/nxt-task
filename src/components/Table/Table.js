@@ -13,17 +13,17 @@ export default function Table() {
     // const columns = COLUMNS
     const [number, setNumber] = useState(1)
     const [data, setTableData] = useState(MOCK_DATA)
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
 
     const getData = async() => {
         try {
-            setLoading(true)
+            // setLoading(true)
         let response = await axios.get(`https://swapi.dev/api/planets/?page=${number}`)
         console.log(response)
         let fetchedData = response.data.results
         setTableData(fetchedData)
-        setLoading(false)
+        // setLoading(false)
         setError(false)
         } catch (error) {
            setError(true) 
@@ -39,16 +39,13 @@ export default function Table() {
         pageIndex: 1
     }}, useFilters, useGlobalFilter, usePagination)
 
-    // const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow, nextPage, previousPage,canPreviousPage, canNextPage, state, setGlobalFilter,} = useTable({columns,data, initialState: {
-    //     pageIndex: 1
-    // }}, useFilters, useGlobalFilter, usePagination)
-
     const {pageIndex, pageSize, globalFilter} = state;
 
   return (
       <>
-    {loading ? ( <div> Loading...</div> 
-     ) : error ? 
+    {/* {loading ? ( <div> Loading...</div> 
+     ) :  */}
+     {error ? 
      <div>
          <span>Oopps, could not fetch data, Please try again!! </span>
          <button onClick={() =>  {
@@ -85,42 +82,6 @@ export default function Table() {
           })}
         </tbody>
       </table>
-      {/* <div>
-        <button onClick={() => {
-            previousPage()
-            if(number == 1) setNumber(1)
-            else setNumber(number - 1)
-        }} 
-        disabled={!canPreviousPage}>
-          Previous
-        </button>{' '}
-        <button onClick={() => {
-        nextPage()
-        if(number === 6) setNumber(6)
-        else setNumber(number + 1)
-        }
-        } disabled={canNextPage}>
-          Next
-        </button>{' '}
-        <span>
-          Page{' '}
-          <strong>
-            {number} of {6}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
-          <input
-            type='number'
-            defaultValue={1}
-            onChange={e => {
-              const pageNumber = e.target.value ? Number(e.target.value) : 0
-              setNumber(pageNumber)
-            }}
-            style={{ width: '50px' }}
-          />
-        </span>{' '}
-      </div> */}
       <div >
       <PaginationComp getData={getData} page={number} setNumber={setNumber}/> 
       </div>
