@@ -1,10 +1,5 @@
 export const COLUMNS = [
-    // {
-    //   Header: 'Id',
-    //   accessor: 'id',
-    //   disableFilters: true,
-    //   sticky: 'left'
-    // },
+  
     {
       Header: 'Name',
       accessor: 'name',
@@ -16,11 +11,6 @@ export const COLUMNS = [
       sticky: 'left'
     },
     {
-      Header: 'Terrain',
-      accessor: 'terrain',
-      sticky: 'left'
-    },
-    {
       Header: 'Population',
       accessor: 'population',
       sticky: 'left'
@@ -28,6 +18,19 @@ export const COLUMNS = [
     {
       Header: 'Diameter',
       accessor: 'diameter',
+      sticky: 'left'
+    },
+    {
+      Header: 'Rotation Period',
+      accessor: 'rotation_period',
+    },
+    {
+      Header: 'Orbital Period',
+      accessor: 'orbital_period',
+    },
+    {
+      Header: 'Terrain',
+      accessor: 'terrain',
       sticky: 'left'
     },
   ]
