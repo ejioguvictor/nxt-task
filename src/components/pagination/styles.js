@@ -6,11 +6,10 @@ justify-content: flex-end;
 margin-top: 1.25rem;
 padding: 0 1rem 1rem 0;
 `;
-export const PaginationButton = styled.button`
+export const PaginationButton = styled.div`
 border: none;
 background: none;
 display: flex;
-/* border: 1px solid black; */
 cursor: pointer;
 align-items: center;
 color: #718CFB;
