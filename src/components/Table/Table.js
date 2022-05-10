@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import MOCK_DATA from  "../../MOCK_DATA.json"
-import {useTable, useFilters, useGlobalFilter} from 'react-table'
+import {useTable} from 'react-table'
 import { COLUMNS as columns} from '../../columns'
 import { GlobalFilter } from '../Search/index'
 import PaginationComp from "../pagination"
@@ -34,9 +34,7 @@ export default function Table() {
         // eslint-disable-next-line 
     },[number])
 
-    const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow, state, setGlobalFilter,} = useTable({columns,data, initialState: {
-        pageIndex: 1
-    }}, useFilters, useGlobalFilter)
+    const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow, state, setGlobalFilter,} = useTable({columns,data})
 
     const { globalFilter} = state;
 
