@@ -15,6 +15,7 @@ export const GlobalFilter = ({ filter, setFilter }) => {
       <SearchBar>
       Search: {' '}
       <input
+        className='search-input'
         value={value || ''}
         onChange={e => {
           setValue(e.target.value);

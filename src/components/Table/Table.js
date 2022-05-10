@@ -1,50 +1,48 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import MOCK_DATA from  "../../MOCK_DATA.json"
-import {useTable, useFilters, useGlobalFilter, usePagination} from 'react-table'
+import {useTable, useFilters, useGlobalFilter} from 'react-table'
 import { COLUMNS as columns} from '../../columns'
 import { GlobalFilter } from '../Search/index'
 import PaginationComp from "../pagination"
+import {TailSpin} from "react-loader-spinner"
 import "./table.css"
 
 export default function Table() {
     const [number, setNumber] = useState(1)
     const [data, setTableData] = useState(MOCK_DATA)
-    // const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const getData = async() => {
         try {
-            // setLoading(true)
+          setLoading(true)
         let response = await axios.get(`https://swapi.dev/api/planets/?page=${number}`)
         console.log(response)
         let fetchedData = response.data.results
         setTableData(fetchedData)
-        // setLoading(false)
         setError(false)
+        setLoading(false)
         } catch (error) {
            setError(true) 
-          //  setLoading(false)
+           setLoading(false)
         }    
     }
 
     useEffect(()=> {
         getData()
+        // eslint-disable-next-line 
     },[number])
-
-    // const {getTableProps,getTableBodyProps,headerGroups,footerGroups,rows,prepareRow, page, nextPage, previousPage,canPreviousPage, canNextPage, pageOptions, state,gotoPage, pageCount, setPageSize, setGlobalFilter,} = useTable({columns,data, initialState: {
-    //     pageIndex: 1
-    // }}, useFilters, useGlobalFilter, usePagination)
 
     const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow, state, setGlobalFilter,} = useTable({columns,data, initialState: {
         pageIndex: 1
-    }}, useFilters, useGlobalFilter, usePagination)
+    }}, useFilters, useGlobalFilter)
 
-    // const {pageIndex, pageSize, globalFilter} = state;
     const { globalFilter} = state;
 
   return (
       <>
+
      {error ? <div>
          <span>Oopps, could not fetch data, Please try again!! </span>
          <button onClick={() =>  {
@@ -57,6 +55,11 @@ export default function Table() {
     
     <div style={{marginTop:"20px"}}>
         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/> 
+        { loading ? <div className="loader">
+          <TailSpin ariaLabel="loading-indicator" />
+          </div>
+        :
+        <div> 
         <table {...getTableProps()} style={{marginTop:"20px"}}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -80,9 +83,9 @@ export default function Table() {
           })}
         </tbody>
         </table>
-      <div>
-      <PaginationComp getData={getData} page={number} setNumber={setNumber}/> 
-      </div>  
+        <PaginationComp getData={getData} page={number} setNumber={setNumber}/> 
+        </div>
+        }
     </div>
     )} 
     </>

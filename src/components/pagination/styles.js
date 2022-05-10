@@ -5,6 +5,8 @@ display: flex;
 justify-content: flex-end;
 margin-top: 1.25rem;
 padding: 0 1rem 1rem 0;
+margin-right: 20px;
+position: relative;
 `;
 export const PaginationButton = styled.div`
 border: none;
